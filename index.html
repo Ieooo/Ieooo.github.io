@@ -161,6 +161,108 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Linux-Service" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/07/Linux-Service/">Centos创建服务</a>
+    </h1>
+  
+
+        
+        <a href="/2022/03/07/Linux-Service/" class="archive-article-date">
+  	<time datetime="2022-03-07T14:01:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Centos7中的用户服务文件在<code>/usr/lib/systemd/system</code>中，以<code>.service</code>结尾，下面是nginx.service的内容</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line"><span class="meta">#</span><span class="bash"> 服务名称</span></span><br><span class="line">Description=nginx - high performance web server         </span><br><span class="line"><span class="meta">#</span><span class="bash"> 文档</span></span><br><span class="line">Documentation=http://nginx.org/en/docs/</span><br><span class="line"><span class="meta">#</span><span class="bash"> 服务的依赖</span>	</span><br><span class="line">After=network.target remote-fs.target nss-lookup.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=forking</span><br><span class="line">PIDFile=/run/nginx.pid</span><br><span class="line"><span class="meta">#</span><span class="bash"> Nginx will fail to start <span class="keyword">if</span> /run/nginx.pid already exists but has the wrong</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> SELinux context. This might happen when running `nginx -t` from the cmdline.</span></span><br><span class="line">ExecStartPre=/usr/bin/rm -f /run/nginx.pid</span><br><span class="line"><span class="meta">#</span><span class="bash"> 服务预启动、启动、重启、停止</span></span><br><span class="line">ExecStartPre=/usr/sbin/nginx -t</span><br><span class="line">ExecStart=/usr/sbin/nginx</span><br><span class="line">ExecReload=/usr/sbin/nginx -s reload</span><br><span class="line">PrivateTmp=true</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target                               </span><br></pre></td></tr></table></figure>
+
+
+<p>从上面nginx.service的内容可以看出，一个service的内容包含三部分<code>[Unit]</code>,<code>[Service]</code>,<code>[Install]</code></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Linux Centos</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/03/07/Linux-Service/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'false' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "PbAVzvKbj5dXV2begU88Opwh-gzGzoHsz",
+            app_key: "SqLRD975KeWSyL3pSwBTE7yF",
+            placeholder: "comment...",
+            avatar:"mm"
+        });
+    }
+</script>
+    </section>
+  
+
+  
     <article id="post-begin" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -360,6 +462,10 @@ MathJax.Hub.Queue(function() {
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Linux Centos</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
